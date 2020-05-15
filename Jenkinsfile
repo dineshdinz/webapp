@@ -1,9 +1,10 @@
 pipeline {
-  agent any 
+  agent {
+  docker { image 'gesellix/trufflehog' }
+  }
   tools {
    maven 'Maven'
-   Docker 'Docker'
-  }
+   }
   stages {
     stage ('Initialize') {
       steps {
