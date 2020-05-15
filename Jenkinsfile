@@ -1,7 +1,5 @@
 pipeline {
-  agent {
-  docker { image 'gesellix/trufflehog' }
-  }
+    agent any 
   tools {
    maven 'Maven'
    }
@@ -17,7 +15,6 @@ pipeline {
     
     stage ('Check-Git-Secrets') {
       steps {
-        bash  service docker start
         sh 'rm trufflehog || true'
         sh 'docker run gesellix/trufflehog --json https://github.com/cehkunal/webapp.git > trufflehog'
         sh 'cat trufflehog'
